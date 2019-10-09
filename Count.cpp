@@ -1,6 +1,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <map>
 using namespace std;
 
 int main()
@@ -23,6 +24,24 @@ int main()
     cout << twos << endl;
     twos = count(v.begin(), v.end(), target); // the safes choice and a good habit
     cout << twos << endl;
+
+    // count how many entries are odd
+    int odds = 0;
+    for (auto elem : v)
+    {
+        if (elem % 2 !=0 )
+        {
+            odds++;
+        }
+    }
+    cout << "odds " << odds << endl;
+
+    odds = count_if(begin(v), end(v), [](auto elem) { return elem % 2 !=0; });
+    cout << "odds " << odds << endl;
+
+    map<int, int> monthlengths{ { 1, 31 }, { 2, 28 }, { 3, 31 }, { 4, 30 }, { 5, 31 }, { 6, 30 }, { 7, 31 }, { 8, 31 }, { 9, 30 }, { 10, 31 }, { 11, 30 }, { 12, 31 } };
+    int longmonths = count_if(begin(monthlengths), end(monthlengths), [](auto elem) { return elem.second == 31; });
+    cout << "longmonths " << longmonths << endl;
 
     return 0;
 }
