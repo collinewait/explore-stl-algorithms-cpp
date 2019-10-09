@@ -43,5 +43,17 @@ int main()
     int longmonths = count_if(begin(monthlengths), end(monthlengths), [](auto elem) { return elem.second == 31; });
     cout << "longmonths " << longmonths << endl;
 
+    // are all, any, or non of the values odd? (conclude from number of odd entires)
+    bool allof, noneof, anyof;
+    allof = (odds == v.size());
+    noneof = (odds == 0);
+    anyof = (odds > 0);
+    cout << "allof: " << allof << ". noneof: " << noneof << ". anyof" << anyof << endl;
+
+    allof = all_of(begin(v), end(v), [](auto elem) { return elem % 2 !=0; });
+    noneof = none_of(begin(v), end(v), [](auto elem) { return elem % 2 !=0; });
+    anyof = any_of(begin(v), end(v), [](auto elem) { return elem % 2 !=0; });
+    cout << "allof: " << allof << ". noneof: " << noneof << ". anyof" << anyof << endl;
+
     return 0;
 }
