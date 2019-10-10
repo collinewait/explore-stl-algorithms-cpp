@@ -69,6 +69,12 @@ int main()
     mt19937 generator(ramdomDevice());
     shuffle(begin(v), end(v), generator);
     cout << "after shuffle: " << v[0] << endl;
+
+    partial_sort(begin(v2), find(begin(v2), end(v2), 4), end(v2));
+    int breakpoint = *is_sorted_until(begin(v2), end(v2));
+
+    vector<int> v3(3);
+    partial_sort_copy(begin(v), end(v), begin(v3), end(v3));
     
     return 0;
 }
