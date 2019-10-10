@@ -5,6 +5,7 @@
 using std::vector;
 using std::cout;
 using std::endl;
+using std::string;
 
 int main()
 {
@@ -38,6 +39,28 @@ int main()
     cout << "sorted? " << sorted << endl;
     sorted = is_sorted(begin(v2), end(v2), [](int elem1, int elem2){ return abs(elem1) > abs(elem2); });
     cout << "sorted? " << sorted << endl;
+
+    int high = *(max_element(begin(v), end(v)));
+    cout << "max_element: " << high << endl;
+    int low = *(min_element(begin(v), end(v)));
+    cout << "min_element: " << low << endl;
+
+    sort(begin(v), end(v));
+    low = *begin(v);
+    cout << "low after sorting: " << low << endl;
+    high = *(end(v) -1);
+    cout << "high after sorting: " << high << endl;
+
+    int positive = *upper_bound(begin(v), end(v), 0);
+    cout << "positive: " << positive << endl;
+
+    sort(begin(staff), end(staff),
+        [](Employee e1, Employee e2){ return e1.getSortingName() < e2.getSortingName(); });
+
+    auto p = lower_bound(begin(staff), end(staff), "mary, hope",
+        [](Employee e1, string n){ return e1.getSortingName() < n; });
+    int sal  = p->getSalary();
+    cout << "sal: " << sal << endl;
     
     return 0;
 }
