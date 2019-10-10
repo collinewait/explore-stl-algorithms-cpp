@@ -1,7 +1,9 @@
 #include <vector>
-#include <iostream>
+#include "Employee.h"
 
-using namespace std;
+using std::vector;
+using std::sort;
+using std::stable_sort;
 
 int main()
 {
@@ -12,6 +14,24 @@ int main()
         [](int elem1, int elem2){return elem1 > elem2;});
     sort(begin(v2), end(v2),
         [](int elem1, int elem2){return abs(elem1) > abs(elem2);});
+
+    vector<Employee> staff{
+        { "Colline", "Wait", 1000 },
+        { "some", "name", 2000 },
+        { "other", "someamen", 1000 },
+        { "mary", "hope", 2000 },
+        { "bucky", "pucky", 2000 }
+    };
+
+    // sort(begin(staff), end(stuff)); // - only works if operator < is defined for Employee
+
+    sort(begin(staff), end(staff),
+        [](Employee e1, Employee e2){ return e1.getSalary() < e2.getSalary(); });
+    sort(begin(staff), end(staff),
+        [](Employee e1, Employee e2){ return e1.getSortingName() < e2.getSortingName(); });
+
+    stable_sort(begin(staff), end(staff),
+        [](Employee e1, Employee e2){ return e1.getSalary() < e2.getSalary(); });
 
     return 0;
 }
