@@ -1,11 +1,14 @@
 #include <vector>
 #include "Employee.h"
 #include <iostream>
+#include <random>
 
 using std::vector;
 using std::cout;
 using std::endl;
 using std::string;
+using std::random_device;
+using std::mt19937;
 
 int main()
 {
@@ -61,6 +64,11 @@ int main()
         [](Employee e1, string n){ return e1.getSortingName() < n; });
     int sal  = p->getSalary();
     cout << "sal: " << sal << endl;
+
+    random_device ramdomDevice;
+    mt19937 generator(ramdomDevice());
+    shuffle(begin(v), end(v), generator);
+    cout << "after shuffle: " << v[0] << endl;
     
     return 0;
 }
