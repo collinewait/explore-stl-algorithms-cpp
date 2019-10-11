@@ -1,9 +1,13 @@
 #include <vector>
 #include <iostream>
+#include <string>
+#include <numeric>
 
 using std::vector;
 using std::cout;
 using std::endl;
+using std::string;
+using std::to_string;
 
 int main()
 {
@@ -31,6 +35,36 @@ int main()
 
     auto distance = firstchange.first - begin(a); // getting how long the collection stayed the same
     cout << "distance: " << distance << endl;
+
+    int total = 0;
+    for (int i : a)
+    {
+        total +=1;
+    } 
+    cout << "total: " << total << endl;
+
+    total = accumulate(begin(a), end(a), 0);
+    cout << "total: " << total << endl;
+    total = accumulate(begin(a), end(a), 0,
+        [](int total, int i){if (i%2) return total + i; return total;});
+    cout << "total: " << total << endl;
+    total = accumulate(begin(a), end(a), 1,
+        [](int total, int i){return total * i;});
+    cout << "total: " << total << endl;
+
+    vector<string> words{ "one", "two", "three" };
+    auto allwords = accumulate(begin(words), end(words), string{});
+    cout << "allwords: " << allwords << endl;
+    int length = allwords.size();
+    cout << "length: " << length << endl;
+    allwords = accumulate(begin(words), end(words), string{"words:"}, [](const string& total, string& s){ return total + " " + s; });
+    cout << "allwords: " << allwords << endl;
+    length = allwords.size();
+    cout << "length: " << length << endl;
+
+    string s = accumulate(begin(a), end(a), string{"The numbers are:"},
+        [](const string& total, int i){return total + " " + to_string(i);});
+    cout << "s: " << s << endl;
 
     return 0;
 }
