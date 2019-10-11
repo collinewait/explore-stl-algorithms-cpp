@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <numeric>
 #include "Resource.h"
 
 using std::cout;
@@ -48,6 +49,17 @@ int main()
         [](const Resource& r){ return r.getValue() == 8; });
     vr.erase(renewend2, end(vr));
     cout << "Vr logicalsize " << vr.size() << endl;
+
+    vector<int> v6(10);
+    fill(begin(v6), end(v6), 1);
+    fill_n(begin(v6), 6, 2);
+    iota(begin(v6), end(v6), 1);
+
+    int index = 10;
+    generate(begin(v6), end(v6), [&index](){ return --index; });
+    source = v6;
+    index = 1;
+    generate_n(begin(v6), 7, [&index](){ return (index *=2); });
 
     return 0;
 }
