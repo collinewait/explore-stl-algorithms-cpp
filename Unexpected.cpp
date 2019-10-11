@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <numeric>
 
 using std::cout;
 using std::endl;
@@ -28,5 +29,11 @@ int main()
     v2 = odds;
 
     swap_ranges(begin(v1), find(begin(v1), end(v1), 6), begin(v2));
+
+    vector<int> tasks(6);
+    iota(begin(tasks), end(tasks), 1);
+    auto two = find(begin(tasks), end(tasks), 2);
+    auto four = find(begin(tasks), end(tasks), 4);
+    rotate(two, four, four+1);
 
 }
