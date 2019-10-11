@@ -64,5 +64,13 @@ int main()
     replace(begin(v6), end(v6), 2, 7);
     replace_if(begin(v6), end(v6), [](int elem) { return elem < 16; }, 7);
 
+    transform(begin(source), end(source), begin(source), [](int elem){ return elem * 2; });
+    transform(begin(source), end(source)-1, begin(source)+1, begin(v6), [](int elem1, int elem2){ return elem1 - elem2; });
+
+    iota(begin(v6), end(v6), 1);
+    iota(begin(source), end(source), 2);
+    vector<int>v7(10);
+    transform(begin(source), end(source), begin(v6), begin(v7), [](int elem1, int elem2){ return elem1 + elem2; });
+
     return 0;
 }
