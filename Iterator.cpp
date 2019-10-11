@@ -56,5 +56,13 @@ int main()
     distance = rtwo - rbegin(v1);
     rtwo++;
 
+    auto three = find(begin(v1), end(v1), 3);
+    bool firsthalf = (three - begin(v1) < end(v1) - three);
+    cout << "firsthalf: " << firsthalf << endl;
+
+    auto nine = find(begin(v1), end(v1), 9);
+    firsthalf = (nine - begin(v1) < end(v1) - nine);
+    cout << "firsthalf: " << firsthalf << endl;
+
     return 0;
 }
