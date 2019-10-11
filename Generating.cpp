@@ -72,5 +72,12 @@ int main()
     vector<int>v7(10);
     transform(begin(source), end(source), begin(v6), begin(v7), [](int elem1, int elem2){ return elem1 + elem2; });
 
+    // unique and unique_copy need a sorted collection
+    unique(begin(v2), end(v2));
+    v2[3] = -2;
+    auto v8 = v2;
+    v2.erase(unique(begin(v2), end(v2)), end(v2));
+    unique_copy(begin(v8), end(v8), begin(v7));
+
     return 0;
 }
