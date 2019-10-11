@@ -1,4 +1,9 @@
 #include <vector>
+#include <iostream>
+#include "Resource.h"
+
+using std::cout;
+using std::endl;
 
 using std::vector;
 
@@ -24,6 +29,25 @@ int main()
 
     // copy(begin(source), end(source) - 1, begin(source) + 1); // not guaranteed to work. preffer copy_backward below
     copy_backward(begin(source), end(source) - 1, end(source));
+
+    auto newend = remove(begin(source), end(source), 3);
+    int s = source.size();
+    cout << "s " << s << endl;
+    int logicalsize = newend - begin(source);
+    cout << "logicalsize " << logicalsize << endl;
+    source.erase(newend, end(source));
+    
+    source = v3;
+    source.erase(remove(begin(source), end(source), 3), end(source)); // can be done in one pass.
+
+    vector<Resource> vr(2);
+    vr[0].setValue(8);
+    vr[1].setValue(9);
+
+    auto renewend2 = remove_if(begin(vr), end(vr),
+        [](const Resource& r){ return r.getValue() == 8; });
+    vr.erase(renewend2, end(vr));
+    cout << "Vr logicalsize " << vr.size() << endl;
 
     return 0;
 }
