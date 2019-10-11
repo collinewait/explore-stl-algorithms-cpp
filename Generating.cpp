@@ -61,5 +61,8 @@ int main()
     index = 1;
     generate_n(begin(v6), 7, [&index](){ return (index *=2); });
 
+    replace(begin(v6), end(v6), 2, 7);
+    replace_if(begin(v6), end(v6), [](int elem) { return elem < 16; }, 7);
+
     return 0;
 }
