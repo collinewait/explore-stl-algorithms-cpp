@@ -36,4 +36,12 @@ int main()
     auto four = find(begin(tasks), end(tasks), 4);
     rotate(two, four, four+1);
 
+    vector<int> numbers(8);
+    iota(begin(numbers), end(numbers), 1);
+    auto selected = stable_partioning(begin(numbers), end(numbers), [](int i){ return i % 2 != 0; });
+    four = find(begin(numbers), end(numbers), 4);
+    rotate(begin(numbers), selected, four);
+
+    return 0;
+
 }
