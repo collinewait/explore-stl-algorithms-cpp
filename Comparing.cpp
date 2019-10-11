@@ -66,5 +66,22 @@ int main()
         [](const string& total, int i){return total + " " + to_string(i);});
     cout << "s: " << s << endl;
 
+    b = a;
+    for (auto it = begin(b); it != end(b); it++)
+    {
+        *it = 0;
+    }
+
+    for (auto& i : b)
+    {
+        i = 1;
+    }
+
+    for_each(begin(b), end(b), [](int& elem){ elem = 2; });
+
+    b = a;
+    auto firstthree = find(begin(b), end(b), 3);
+    for_each(firstthree, end(b), [](int& elem){ elem = 0; });
+
     return 0;
 }
