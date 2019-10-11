@@ -2,10 +2,13 @@
 #include <deque>
 #include <numeric>
 #include <string>
+#include <iostream>
 
 using std::vector;
 using std::deque;
 using std::string;
+using std::cout;
+using std::endl;
 
 int main()
 {
@@ -40,6 +43,18 @@ int main()
     string sentence = "Hello world";
     string reverse;
     reverse_copy(begin(sentence), end(sentence), back_inserter(reverse));
+
+    v2.clear();
+    copy(rbegin(v1), rend(v1), back_inserter(v2));
+
+    v1[5] = 2;
+    auto two = find(begin(v1), end(v1), 2);
+    auto distance = two - begin(v1);
+    two++;
+
+    auto rtwo = find(rbegin(v1), rend(v1), 2);
+    distance = rtwo - rbegin(v1);
+    rtwo++;
 
     return 0;
 }
