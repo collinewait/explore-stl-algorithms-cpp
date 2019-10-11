@@ -3,12 +3,14 @@
 #include <numeric>
 #include <string>
 #include <iostream>
+#include <array>
 
 using std::vector;
 using std::deque;
 using std::string;
 using std::cout;
 using std::endl;
+using std::array;
 
 int main()
 {
@@ -63,6 +65,26 @@ int main()
     auto nine = find(begin(v1), end(v1), 9);
     firsthalf = (nine - begin(v1) < end(v1) - nine);
     cout << "firsthalf: " << firsthalf << endl;
+
+    array<const int, 5> ca = { 3, 1, 6, 0, 2 };
+    auto it = begin(ca);
+    it++;
+    // *it = 7;
+    int i = *it;
+
+    // vector<const int> vc; //compilation error
+    it = std::find(begin(ca), end(ca), 1);
+    it++;
+    // *it = 7;
+    // it = cbegin(ca);
+
+    auto it2 = begin(v2);
+    it2++;
+    *it2 = 7;
+
+    auto cit = cbegin(v2);
+    cit++;
+    // *cit = 7;
 
     return 0;
 }
